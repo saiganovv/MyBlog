@@ -1,0 +1,30 @@
+﻿@model MyBlog.Models.PostModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="display-field">
+    @Html.DisplayFor(model => model.Title)
+</div>
+
+<div class="display-field">
+    @Html.DisplayFor(model => model.Description)
+</div>
+
+<div class="display-field">
+    @Html.DisplayFor(model => model.CurrentDate)
+</div>
+
+<div class="display-field">
+    @Html.DisplayFor(model => model.UserName)
+</div>
+@foreach (var it in Model.PostComments)
+{
+    <h2>@it.Description</h2>
+}
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Comment", "Create", "Comments", new{id = Model.Id}, null)
+</p>
