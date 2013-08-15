@@ -16,7 +16,7 @@ namespace MyBlog.Models
 
         public DateTime Date { get; set; }
 
-        public string UserName { get; set; }
+        public virtual UserProfile UserName { get; set; }
 
         public virtual PostModel Post { get; set; }
     }

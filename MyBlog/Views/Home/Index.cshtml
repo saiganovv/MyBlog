@@ -1,28 +1,30 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<MyBlog.Models.PostModel>
+
+@{
+    ViewBag.Title = "Index";
 }
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
+<h2>Top posts</h2>
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+@foreach (var item in Model)
+{
+    <article>
+        @Html.DisplayFor(modelItem => item.Title)
+
+        @Html.DisplayFor(modelItem => item.Description)
+        <div>
+            @Html.DisplayFor(modelItem => item.CurrentDate)
+
+            <div class="btn-group">
+                @Html.ActionLink("Details", "Details", "Posts", new { id = item.Id }, new { @class = "btn" })
+                @if (User.IsInRole("admin") || User.Identity.Name == item.User.UserName)
+                {
+                    @Html.ActionLink("Edit", "Edit", "Posts", new { id = item.Id }, new { @class = "btn" })
+                    @Html.ActionLink("Delete", "Delete", "Posts", new { id = item.Id }, new { @class = "btn" })}
+
+            </div>
+        </div>
+        <hr />
+    </article> 
+}
+

@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Globalization;
 using System.Web.Security;
-using MyBlog.Models;
 
 namespace MyBlog.Models
 {
@@ -32,6 +31,8 @@ namespace MyBlog.Models
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public virtual List<PostModel> UserPosts { get; set; }
+        public virtual List<CommentModel> UserComments { get; set; }
     }
 
     public class RegisterExternalLoginModel

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MyBlog.Models.CommentModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<p>
+    @Html.ActionLink("Create New", "Create", "AdminComments", null, new { @class = "btn btn-success" })
+</p>
+@foreach (var item in Model)
+{
+    <section>
+        @Html.DisplayFor(modelItem => item.Description)
+
+        @Html.DisplayFor(modelItem => item.Date)
+        <span class="btn-group">
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </span>
+    </section>
+
+
+}
+
+

@@ -1,1 +1,24 @@
-﻿
+﻿.inLogin,
+#logoutForm {
+    display: inline-block;
+}
+
+.inLogin {
+    padding-top: 5px;
+}
+
+.inLogin form {
+    margin: 0 !important;
+}
+
+.logButton {
+    margin-top: 0 !important;
+}
+
+nav>div.nav-collapse {
+    display: inline;
+}
+
+.editor-field > input {
+    margin: -4px 0 0 5px !important;
+}

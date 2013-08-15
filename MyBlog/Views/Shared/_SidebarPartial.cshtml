@@ -1,8 +1,9 @@
-﻿<ul class="nav pull-right nav-list">
-    <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-    <li>@Html.ActionLink("About", "About", "Home")</li>
-    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-    <li>@Html.ActionLink("Blog", "Index", "Posts")</li>
-    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+﻿@using MyBlog.Helpers
+<ul class="nav pull-right nav-list">
+    <li class="active">@Html.MenuLink("Home", "Index", "Home")</li>
+    <li>@Html.MenuLink("About", "About", "Home")</li>
+    <li>@Html.MenuLink("Contact", "Contact", "Home")</li>
+    <li>@Html.MenuLink("Blog", "Index", "Posts")</li>
+    <li>@Html.MenuLink("Admin", "Index", "Admin")</li>
 </ul>
 

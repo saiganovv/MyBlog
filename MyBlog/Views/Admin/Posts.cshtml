@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MyBlog.Models.PostModel>
+
+@{
+    ViewBag.Title = "Posts";
+}
+<p>
+    @Html.ActionLink("Create New", "Create", "AdminPosts", null, new { @class = "btn btn-success" })
+</p>
+
+
+@foreach (var item in Model)
+{
+    <article>
+        <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+        <p>
+            @Html.DisplayFor(modelItem => item.Published)
+            <span>@Html.DisplayFor(modelItem => item.CurrentDate)</span>
+            <span>@Html.DisplayFor(modelItem => item.User.UserName)</span>
+            <span>@Html.DisplayFor(modelItem => item.PostComments.Count)</span>
+        </p>
+        
+        <p class="btn-group">
+            @Html.ActionLink("Edit", "Edit", "AdminPosts", new { id = item.Id }, new { @class = "btn" })
+            @Html.ActionLink("Delete", "Delete", "AdminPosts", new { id = item.Id }, new { @class = "btn" })
+        </p>
+    </article>
+}
+

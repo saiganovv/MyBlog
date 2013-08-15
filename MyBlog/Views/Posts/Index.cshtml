@@ -3,11 +3,8 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", "Posts", null, new { @class = "btn btn-success" })
 </p>
 
 
@@ -15,15 +12,22 @@
 {
     <h5>@Html.DisplayFor(modelItem => item.Title)</h5>
     <p>@Html.DisplayFor(modelItem => item.Description)</p>
-    <span>@Html.DisplayFor(modelItem => item.UserName) /</span>
+    <span>@Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)/</span>
     <span>@Html.DisplayFor(modelItem => item.CurrentDate) /</span>
-    <span>@item.PostComments.Count</span>
+    <span>@Html.DisplayFor(modelItem => item.PostComments.Count) comments</span>
+    
     <span class="btn-group">
-        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new{@class="btn"})
-        @Html.ActionLink("Details", "Details", new { id = item.Id }, new{@class="btn"})
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new{@class="btn"})
+        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn" })
+        @if (User.IsInRole("admin") || item.User.UserName == User.Identity.Name)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn" })
+        }
+
+
+
     </span>
-    <hr/>
+    <hr />
 
 }
 

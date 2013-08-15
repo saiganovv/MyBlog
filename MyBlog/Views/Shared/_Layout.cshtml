@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using MyBlog.Helpers
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,8 +7,10 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/normalize.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-responsive-min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -16,17 +19,23 @@
         <nav class="navbar navbar-inner">
             @Html.ActionLink("MyBlog", "Index", "Home", null, new { @class = "brand" })
             @Html.Partial("_LoginPartial")
-            <ul class="nav pull-right">
-                <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                <li>@Html.ActionLink("Blog", "Index", "Posts")</li>
-                <li>@Html.ActionLink("Admin", "Contact", "Home")</li>
-            </ul>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="nav-collapse pull-right">
+                <ul class="nav pull-right">
+                    <li>@Html.MenuLink("Home", "Index", "Home")</li>
+                    <li>@Html.MenuLink("About", "About", "Home")</li>
+                    <li>@Html.MenuLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.MenuLink("Blog", "Index", "Posts")</li>
+                    <li>@Html.MenuLink("AdminPanel", "Index", "Admin")</li>
+                </ul>
+            </div>
         </nav>
     </header>
     <div>
-        @RenderSection("featured", required: false)
         <section class="container-fluid">
             <div class="row-fluid">
                 <section class="span10">
@@ -38,7 +47,7 @@
             </div>
         </section>
     </div>
-@*    <footer>
+    @*    <footer>
         <div class="content-wrapper">
             <div class="float-left">
                 <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
@@ -48,6 +57,9 @@
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
-
+    <script src="~/Scripts/knockout-2.3.0.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.3.min.js"></script>
+    <script src="~/Scripts/custom.js"></script>
 </body>
 </html>

@@ -1,18 +1,18 @@
 ﻿@if (Request.IsAuthenticated)
 {
-    <text>
+    <span class="inLogin">
     Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
         {
             @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-mini logButton">Log off</a>
         }
-    </text>
+    </span>
 }
 else
 {
-        <div class="btn-group">
-            <span>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-mini" })</span>
-            <span>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-mini" })</span>
-        </div>
+    <div class="btn-group">
+        <span>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-mini" })</span>
+        <span>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-mini" })</span>
+    </div>
 }

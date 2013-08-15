@@ -1,4 +1,52 @@
-﻿@model MyBlog.Models.LoginModel
+﻿
+@{
+    ViewBag.Title = "Login";
+  
+}
+
+@*<form id="loginForm"  method="POST">
+    <style>
+    fieldset
+    {
+        width:250px !important;
+    }
+</style>
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName, new { autofocus = "autofocus", id = "loginName", data_bind = "value:UserName" })
+              
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { data_bind = "value:Password" })
+             
+            </li>
+            <li>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox", data_bind = "value:RememberMe" })
+            </li>
+            <li>
+                <input type="submit" value="Log in" data-bind="submit: doLogin" />
+                @Html.ActionLink("Register", "Register", "Account")
+            </li>
+        </ol>
+        @Html.ValidationSummary()
+    </fieldset>
+</form>
+
+@section scripts
+{
+    <script src="~/Scripts/knockout-2.3.0.js"></script>
+
+}
+*@
+
+
+@model MyBlog.Models.LoginModel
 
 @{
     ViewBag.Title = "Log in";

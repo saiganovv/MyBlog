@@ -22,8 +22,8 @@ namespace MyBlog.Models
 
         public bool Published { get; set; }
 
-        public string UserName { get; set; }
-
         public virtual List<CommentModel> PostComments { get; set; }
+
+        public virtual UserProfile User { get; set; }
     }
 }

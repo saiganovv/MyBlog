@@ -15,7 +15,7 @@
 
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.CurrentDate)
-        @Html.HiddenFor(model => model.UserName)
+        @Html.HiddenFor(model => model.User.UserId)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Title)

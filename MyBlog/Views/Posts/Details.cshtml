@@ -4,27 +4,45 @@
     ViewBag.Title = "Details";
 }
 
-<div class="display-field">
+<h3 class="">
     @Html.DisplayFor(model => model.Title)
+</h3>
+<div class="">
+    <em>@Html.DisplayFor(model => model.Description)</em>
+</div>
+<br />
+
+<div class="pull-right">
+    <span class="">@Html.DisplayFor(model => model.User.FirstName) @Html.DisplayFor(model => model.User.LastName)</span> /
+    <span>@Html.DisplayFor(model => model.CurrentDate)</span>
 </div>
 
 <div class="display-field">
-    @Html.DisplayFor(model => model.Description)
 </div>
+<p class="btn-group">
+    @Html.ActionLink("Back to List", "Index", "Posts", null, new { @class = "btn btn-mini" })
+    @Html.ActionLink("Comment", "Create", "Comments", new { id = Model.Id }, new { @class = "btn btn-mini" })
+    @if (User.IsInRole("admin") || Model.User.UserName == User.Identity.Name)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-mini" })
+    }
 
-<div class="display-field">
-    @Html.DisplayFor(model => model.CurrentDate)
-</div>
-
-<div class="display-field">
-    @Html.DisplayFor(model => model.UserName)
-</div>
+</p>
+<hr />
 @foreach (var it in Model.PostComments)
 {
-    <h2>@it.Description</h2>
+    <section class="offset1 row-fluid">
+        <blockquote class="span3">
+            <p>@it.Description</p>
+            <small>@it.UserName.FirstName @it.Date.Year</small>
+        </blockquote>
+        <p class="btn-group">
+            @if (User.IsInRole("admin") || it.UserName.UserName == User.Identity.Name)
+            {
+                @Html.ActionLink("Edit", "Edit", "Comments", new { id = it.Id }, new { @class = "btn btn-mini" })
+                @Html.ActionLink("Delete", "Delete", "Comments", new { id = it.Id }, new { @class = "btn btn-mini" })
+            }
+        </p>
+    </section>
 }
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-    @Html.ActionLink("Comment", "Create", "Comments", new{id = Model.Id}, null)
-</p>
+

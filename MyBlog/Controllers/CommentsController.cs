@@ -9,6 +9,7 @@ using MyBlog.Models;
 
 namespace MyBlog.Controllers
 {
+    [Authorize]
     public class CommentsController : Controller
     {
         private UsersContext db = new UsersContext();
@@ -51,13 +52,13 @@ namespace MyBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                commentmodel.UserName = User.Identity.Name;
-                commentmodel.Date = DateTime.Now.Date;
+                commentmodel.UserName = db.UserProfiles.Where(x => x.UserName == User.Identity.Name).First();
+                commentmodel.Date = DateTime.Now;
                 var post = db.PostModels.Find(id);
                 commentmodel.Post = post;
                 db.CommentModels.Add(commentmodel);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Posts");
             }
 
             return View(commentmodel);
@@ -87,7 +88,7 @@ namespace MyBlog.Controllers
             {
                 db.Entry(commentmodel).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Posts");
             }
             return View(commentmodel);
         }
@@ -115,7 +116,7 @@ namespace MyBlog.Controllers
             CommentModel commentmodel = db.CommentModels.Find(id);
             db.CommentModels.Remove(commentmodel);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Posts");
         }
 
         protected override void Dispose(bool disposing)
